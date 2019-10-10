@@ -1,6 +1,6 @@
 {
   "name": "@pinuts/jsx-runtime",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "JSX runtime: JSX.createElement()",
   "main": "index.js",
   "scripts": {
