@@ -27,6 +27,22 @@ function compileScripts() {
 The magic keywords here are `pragma` and `pragmaFrag` that reference the according
 functions from _jsx-runtime_.
 
+## Using jsx-runtime
+
+Add jsx-runtime as a dependency:
+```bash
+npm i @pinuts/jsx-runtime
+```
+
+To use the runtime in an arbitrary module, import _JSX_ like this to add it to the current scope:
+```javascript
+import JSX from '@pinuts/jsx-runtime';
+
+function foo() {
+    return <h1>Hello World</h1>;
+}
+```
+
 
 # Publish on npm
 
