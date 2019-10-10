@@ -4,11 +4,12 @@ JSX runtime: JSX.createElement()
 This is a runtime library to render babel-compiled JSX templates
 in the browser.
 
-## Example gulp task
+## Example gulp 4 task
 
 ```javascript
-gulp.task('scripts', function() {
-    browserify("./src/js/main.js", {debug: true})
+// Transpile ES6, Modules and JSX
+function compileScripts() {
+    return browserify("./src/js/main.js", {debug: true})
         .transform("babelify", {
             presets: ["@babel/preset-env"],
             highlightCode: true,
@@ -19,8 +20,8 @@ gulp.task('scripts', function() {
         })
         .bundle()
         .on('error', handleError)
-        .pipe(fs.createWriteStream("./dist/js/package.js"));
-});
+        .pipe(fs.createWriteStream(outputDir + '/js/package.js'));
+}
 ```
 
 The magic keywords here are `pragma` and `pragmaFrag` that reference the according
