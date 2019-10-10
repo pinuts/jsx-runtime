@@ -1,0 +1,23 @@
+{
+  "name": "@pinuts/jsx-runtime",
+  "version": "0.8.0",
+  "description": "JSX runtime: JSX.createElement()",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+      "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinuts/jsx-runtime.git"
+  },
+  "author": "Florian Wolff",
+  "license": "ISC",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/pinuts/jsx-runtime/issues"
+  },
+  "homepage": "https://github.com/pinuts/jsx-runtime#readme"
+}
