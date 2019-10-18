@@ -7,6 +7,10 @@ in the browser.
 ## Example gulp 4 task
 
 ```javascript
+const gulp = require('gulp');
+const browserify  = require('browserify');
+const fs = require("fs");
+
 // Transpile ES6, Modules and JSX
 function compileScripts() {
     return browserify("./src/js/main.js", {debug: true})
