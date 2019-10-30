@@ -26,6 +26,11 @@ function compileScripts() {
         .on('error', handleError)
         .pipe(fs.createWriteStream(outputDir + '/js/package.js'));
 }
+
+function handleError(error) {
+    console.error(error.toString());
+    this.emit('end');
+}
 ```
 
 The magic keywords here are `pragma` and `pragmaFrag` that reference the according
