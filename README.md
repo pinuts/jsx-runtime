@@ -4,43 +4,12 @@ JSX runtime: JSX.createElement()
 This is a runtime library to render babel-compiled JSX templates
 in the browser.
 
-## Example gulp 4 task
-
-```javascript
-const gulp = require('gulp');
-const browserify  = require('browserify');
-const fs = require("fs");
-
-// Transpile ES6, Modules and JSX
-function compileScripts() {
-    return browserify("./src/js/main.js", {debug: true})
-        .transform("babelify", {
-            presets: ["@babel/preset-env"],
-            highlightCode: true,
-            plugins: [
-                "@babel/plugin-syntax-jsx",
-                ["@babel/plugin-transform-react-jsx", { pragma: "JSX.createElement", pragmaFrag: "JSX.Fragment" }]
-            ]
-        })
-        .bundle()
-        .on('error', handleError)
-        .pipe(fs.createWriteStream(outputDir + '/js/package.js'));
-}
-
-function handleError(error) {
-    console.error(error.toString());
-    this.emit('end');
-}
-```
-
-The magic keywords here are `pragma` and `pragmaFrag` that reference the according
-functions from _jsx-runtime_.
 
 ## Using jsx-runtime
 
 Add jsx-runtime as a dependency:
 ```bash
-npm i @pinuts/jsx-runtime
+npm i @pinuts/jsx-runtime --save
 ```
 
 To use the runtime in an arbitrary module, import _JSX_ like this to add it to the current scope:
@@ -52,6 +21,48 @@ function foo() {
 }
 ```
 
+## Example gulpfile.js
+
+Install gulp 4, browserify, babelify and friends:
+```bash
+npm i gulp@4 browserify babelify @babel/core @babel/preset-env @babel/plugin-syntax-jsx @babel/plugin-transform-react-jsx --save-dev
+```
+
+```javascript
+const gulp = require('gulp');
+const browserify  = require('browserify');
+const fs = require('fs');
+const outputDir = 'dist';
+
+// Transpile ES6, Modules and JSX
+function compileScripts() {
+    const jsOutputDir = outputDir + '/js';
+    fs.mkdirSync(jsOutputDir, {recursive: true});
+    
+    return browserify('./src/js/main.js', {debug: true})
+        .transform('babelify', {
+            presets: ['@babel/preset-env'],
+            highlightCode: true,
+            plugins: [
+                '@babel/plugin-syntax-jsx',
+                ['@babel/plugin-transform-react-jsx', { pragma: 'JSX.createElement', pragmaFrag: 'JSX.Fragment' }]
+            ]
+        })
+        .bundle()
+        .on('error', handleError)
+        .pipe(fs.createWriteStream(jsOutputDir + '/package.js'));
+}
+
+function handleError(error) {
+    console.error(error.toString());
+    this.emit('end');
+}
+
+gulp.task('default', compileScripts);
+```
+
+The magic keywords here are `pragma` and `pragmaFrag` that reference the according
+functions from _jsx-runtime_.
 
 # Publish on npm
 
