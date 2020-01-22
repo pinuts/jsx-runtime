@@ -2,13 +2,19 @@
   "name": "@pinuts/jsx-runtime",
   "version": "0.9.4",
   "description": "JSX runtime: JSX.createElement()",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src --out-dir ./dist"
   },
   "files": [
     "index.js"
   ],
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pinuts/jsx-runtime.git"
