@@ -53,7 +53,7 @@ const JSX = {
                         // Safari < 12 needs "xlink:href":
                         element.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', value);
                     }
-                    if (key == 'className') key = 'class';
+                    // if (key == 'className') key = 'class';
                     element.setAttribute(key, value);
                 }
             })
